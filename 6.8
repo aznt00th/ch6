@@ -1,0 +1,25 @@
+/* comment
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#define importantvalue 0
+
+void int_divide(int numerator, int denominator, int *quotient, int *remainder);
+
+
+int
+main(int argc, char *argv[]) {
+	int x, y, a, b;
+	printf("Enter some stuff: ");
+	scanf("%d %d", &x, &y);
+	int_divide(x, y, &a, &b);
+	printf("quotient is %d with remainder %d\n", a, b);
+	return 0;
+}
+
+
+void 
+int_divide(int numerator, int denominator, int *quotient, int *remainder){
+	*quotient = numerator/denominator;
+	*remainder = numerator%denominator;
+}
