@@ -1,0 +1,76 @@
+/* comment
+*/
+#include <stdio.h>
+#define importantvalue 0
+
+int try_one_coin(int *cents, int coin);
+void print_change(int cents);
+void printpattern(int cents, int denomination, int count);
+void callstuff(int **cents, int coin);
+
+int
+main(int argc, char *argv[]) {
+	int x=0;
+	printf("Enter amount in cents: ");
+	scanf("%d", &x);
+	print_change(x);
+	return 0;
+}
+
+
+void
+print_change(int cents){
+	printf("change required is: ");
+	int *centsp;
+	centsp = &cents;
+	callstuff(&centsp, 50);
+	callstuff(&centsp, 20);
+	callstuff(&centsp, 10);
+	callstuff(&centsp, 5);
+	callstuff(&centsp, 2);
+	callstuff(&centsp, 1);
+	
+	/*x=try_one_coin(&cents, 50);
+	printpattern(cents, 50, x);
+	x=try_one_coin(&cents, 20);
+	printpattern(cents, 20, x);
+	x=try_one_coin(&cents, 10);
+	printpattern(cents, 10, x);
+	x=try_one_coin(&cents, 5);
+	printpattern(cents, 5, x);
+	x=try_one_coin(&cents, 2);
+	printpattern(cents, 2, x);
+	x=try_one_coin(&cents, 1);
+	printpattern(cents, 1, x);*/
+	
+}
+void 
+printpattern(int cents, int denomination, int count){
+	while (count>1){
+		printf("%d, ", denomination);
+		count-=1;
+	}if (count==0){
+	}else if (cents==0){
+		printf("%d\n", denomination);
+	}else {
+		printf("%d, ", denomination);
+	}
+}
+
+void 
+callstuff(int **cents, int coin){
+	int x;
+	if (**cents>0){
+		x=try_one_coin(*cents, coin);
+		printpattern(**cents, coin, x);
+	}
+}
+
+int 
+try_one_coin(int *cents, int coin){
+	int count=0;
+	while (*cents>=coin){
+		*cents-=coin;
+		count+=1;
+	}return count;
+}
